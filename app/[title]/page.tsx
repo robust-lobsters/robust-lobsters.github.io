@@ -19,7 +19,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { title } = await params
   const previousImages = (await parent).openGraph?.images || []
-  const decodedParam = decodeURI(title).split('-').join(' ')
+  const decodedParam = decodeURIComponent(title).split('-').join(' ')
   const TITLE = `${decodedParam} - robust-lobsters`
 
   return {
@@ -31,14 +31,18 @@ export async function generateMetadata(
 }
 export default async function Page({ params }: Props) {
   const { title } = await params
-  const decodedTitle = decodeURI(title)
+  const decodedTitle = decodeURIComponent(title)
 
   const matchFile = writingsWithFileType.find(p => {
     const base = p.split('/').pop()!.replace(/\.md$/, '')
     return base === decodedTitle
   })
 
-  const url = getUrl(matchFile ?? '')
+  const url =
+    matchFile && matchFile.startsWith('/')
+      ? getUrl(matchFile.slice(1))
+      : getUrl(matchFile || '')
+
   const md = await fetch(url)
     .then(r => r.text())
     .catch(() => '# 문서를 로드하는 데 실패했습니다')
