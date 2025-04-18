@@ -1,8 +1,8 @@
 export const getUrl = (path: string) => {
-  console.log(path)
-  return `https://raw.githubusercontent.com/robust-lobsters/robust-lobsters.github.io/refs/heads/main/__writings/${encodeURI(
-    path
-  )}`
+  if (path.startsWith('/')) path = path.slice(1)
+  return encodeURI(
+    `https://raw.githubusercontent.com/robust-lobsters/robust-lobsters.github.io/refs/heads/main/__writings/${path}`
+  )
 }
 
 const response = await fetch(
@@ -13,10 +13,12 @@ export const writingsWithFileType = (await response.json()) as string[]
 
 export const titles: string[] = []
 
-export const writingsData = writingsWithFileType.map(file => {
+export const writingsData: Record<string, string> = {}
+
+writingsWithFileType.forEach(file => {
   const filename = file.split('/').pop()! // 'test.md'
   const title = filename.replace(/\.md$/, '') // 'test'
 
   titles.push(title)
-  return { [title]: getUrl(file) }
+  writingsData[title] = getUrl(file)
 })

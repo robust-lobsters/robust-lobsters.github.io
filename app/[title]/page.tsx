@@ -1,5 +1,5 @@
 import { MD } from '~/_lib/components/md'
-import { getUrl, titles, writingsWithFileType } from '~/_lib/util/get-writings'
+import { titles, writingsData } from '~/_lib/util/get-writings'
 import type { Metadata, ResolvingMetadata } from 'next'
 import { Spacing } from '~/_lib/components/_common/spacing/spacing'
 import { BackBtn } from '~/_lib/components/_common/button/back-btn/back-btn'
@@ -33,15 +33,7 @@ export default async function Page({ params }: Props) {
   const { title } = await params
   const decodedTitle = decodeURIComponent(title)
 
-  const matchFile = writingsWithFileType.find(p => {
-    const base = p.split('/').pop()!.replace(/\.md$/, '')
-    return base === decodedTitle
-  })
-
-  const url =
-    matchFile && matchFile.startsWith('/')
-      ? getUrl(matchFile.slice(1))
-      : getUrl(matchFile || '')
+  const url = writingsData[decodedTitle]
 
   const md = await fetch(url)
     .then(r => r.text())
