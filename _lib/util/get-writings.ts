@@ -1,7 +1,9 @@
-export const getUrl = (path: string) =>
-  `https://raw.githubusercontent.com/robust-lobsters/robust-lobsters.github.io/refs/heads/main/__writings/${encodeURI(
+export const getUrl = (path: string) => {
+  console.log(path)
+  return `https://raw.githubusercontent.com/robust-lobsters/robust-lobsters.github.io/refs/heads/main/__writings/${encodeURI(
     path
   )}`
+}
 
 const response = await fetch(
   'https://raw.githubusercontent.com/robust-lobsters/robust-lobsters.github.io/refs/heads/main/__writings/writings.map.json'
