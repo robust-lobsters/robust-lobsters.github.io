@@ -1,0 +1,36 @@
+import type { Metadata } from 'next'
+import { CenterLayout } from '~/_lib/components/layout/grid'
+import '~/_lib/global-style.css'
+
+export const metadata: Metadata = {
+  title: 'Robust Lobsters',
+  description: 'Robust Lobsters',
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="ko">
+      <head>
+        <head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="anonymous"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=42dot+Sans:wght@300..800&family=Space+Mono&display=swap"
+            rel="stylesheet"
+          />
+        </head>
+      </head>
+      <body>
+        <CenterLayout>{children}</CenterLayout>
+      </body>
+    </html>
+  )
+}
