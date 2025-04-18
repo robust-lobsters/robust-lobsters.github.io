@@ -10,11 +10,7 @@ type Props = {
 }
 
 export async function generateStaticParams() {
-  return titles.map(t => {
-    return {
-      title: encodeURIComponent(t),
-    }
-  })
+  return titles.map(t => ({ title: encodeURIComponent(t) }))
 }
 
 export async function generateMetadata(
@@ -23,7 +19,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { title } = await params
   const previousImages = (await parent).openGraph?.images || []
-  const decodedParam = decodeURIComponent(title).split('-').join(' ')
+  const decodedParam = decodeURI(title).split('-').join(' ')
   const TITLE = `${decodedParam} - robust-lobsters`
 
   return {
@@ -33,21 +29,25 @@ export async function generateMetadata(
     },
   }
 }
-
 export default async function Page({ params }: Props) {
   const { title } = await params
-  const matchFile = writingsWithFileType.find(v => {
-    const [filename] = v.split('.')
-    return filename === decodeURIComponent(title)
+  const decodedTitle = decodeURI(title)
+
+  const matchFile = writingsWithFileType.find(p => {
+    const base = p.split('/').pop()!.replace(/\.md$/, '')
+    return base === decodedTitle
   })
+
   const url = getUrl(matchFile ?? '')
-  const resp = await fetch(url)
-  const md = (await resp.text()) ?? '# 문서 로드에 실패했습니다'
+  const md = await fetch(url)
+    .then(r => r.text())
+    .catch(() => '# 문서를 로드하는 데 실패했습니다')
 
   return (
     <article>
+      <Spacing size="1rem" />
       <BackBtn />
-      <Spacing size="4rem" />
+      <Spacing size="2rem" />
       <MD markdownText={md} />
     </article>
   )

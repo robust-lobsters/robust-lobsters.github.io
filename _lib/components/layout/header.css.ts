@@ -6,12 +6,13 @@ export const HEADER = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  borderRadius: '0.4rem',
+  borderRadius: '0.75rem',
   backgroundColor: '#222628',
 })
 
 export const LOGO = style({
   fontWeight: 700,
+  textTransform: 'capitalize',
   fontSize: '1.25rem',
   color: 'white',
 })
