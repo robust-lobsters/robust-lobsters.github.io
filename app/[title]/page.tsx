@@ -36,7 +36,10 @@ export async function generateMetadata(
 
 export default async function Page({ params }: Props) {
   const { title } = await params
-  const matchFile = writingsWithFileType.find(v => v === decodeURIComponent(title))
+  const matchFile = writingsWithFileType.find(v => {
+    const [filename] = v.split('.')
+    return filename === decodeURIComponent(title)
+  })
   const url = getUrl(matchFile ?? '')
   const resp = await fetch(url)
   const md = (await resp.text()) ?? '# 문서 로드에 실패했습니다'
