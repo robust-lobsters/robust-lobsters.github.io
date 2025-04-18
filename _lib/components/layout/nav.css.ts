@@ -6,4 +6,5 @@ export const NAV = style({
   display: 'flex',
   justifyContent: 'center',
   gap: '0.5rem',
+  marginBottom: '1rem',
 })
