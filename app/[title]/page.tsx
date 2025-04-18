@@ -43,6 +43,8 @@ export default async function Page({ params }: Props) {
       ? getUrl(matchFile.slice(1))
       : getUrl(matchFile || '')
 
+  console.log(url)
+
   const md = await fetch(url)
     .then(r => r.text())
     .catch(() => '# 문서를 로드하는 데 실패했습니다')
