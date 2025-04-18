@@ -2,6 +2,7 @@
   "name": "@robust-lobsters/techblog",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://robust-lobsters.github.io/robust-lobsters.github.io/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
