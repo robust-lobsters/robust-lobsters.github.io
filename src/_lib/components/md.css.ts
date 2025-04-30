@@ -1,6 +1,6 @@
-import { RendererCSSSet } from '@frfla/react-md-renderer'
+import { RendererCSSMap } from '@frfla/react-md-renderer';
 
-export const MARKDOWN_CSS: Partial<RendererCSSSet> = {
+export const MARKDOWN_CSS: Partial<RendererCSSMap> = {
   h1: {
     marginBottom: '4rem',
     textAlign: 'center',
@@ -24,6 +24,19 @@ export const MARKDOWN_CSS: Partial<RendererCSSSet> = {
   h5: { fontWeight: '600' },
   h6: {},
   hr: {},
+  code: {
+    fontSize: '0.75rem',
+    padding: '0.1rem 0.2rem 0.1rem 0.2rem',
+    margin: '0 0.12rem 0 0.12rem',
+    borderRadius: '0.35rem',
+    color: 'red',
+  },
+  pre: {
+    fontSize: '0.8rem',
+    padding: '0.75rem',
+    borderRadius: '0.5rem',
+    marginBottom: '1rem',
+  },
   p: { marginBottom: '1rem', lineHeight: '1.85', fontSize: '1.05rem' },
   a: {
     color: '#888',
@@ -68,4 +81,4 @@ export const MARKDOWN_CSS: Partial<RendererCSSSet> = {
     },
     italic: undefined,
   },
-}
+};

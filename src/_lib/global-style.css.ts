@@ -32,17 +32,7 @@ globalStyle('ul', {
 });
 globalStyle('pre, code', {
   fontFamily: '"Space Mono", monospace',
-  fontSize: '0.75rem',
   backgroundColor: '#f4f8fa',
 });
-globalStyle('pre', {
-  padding: '0.75rem 0.25rem 0.25rem 0.25rem',
-  borderRadius: '0.5rem',
-  marginBottom: '1.5rem',
-});
-globalStyle('code', {
-  padding: '0.1rem 0.2rem 0.1rem 0.2rem',
-  margin: '0 0.12rem 0 0.12rem',
-  borderRadius: '0.35rem',
-  color: 'orange',
-});
+globalStyle('pre', {});
+globalStyle('code', {});

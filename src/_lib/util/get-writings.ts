@@ -19,7 +19,7 @@ export const writingsWithFileType = async () => {
 export const titles: string[] = [];
 
 //returns "xxxx-xxxx-xxxx.md"
-export const writingsData = writingsWithFileType().then(data =>
+writingsWithFileType().then(data =>
   data.map(file => {
     const DOT = file.indexOf('.');
     const TITLE = file.slice(0, DOT);
